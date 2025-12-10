@@ -1,0 +1,56 @@
+<html> 
+   <meta charset="utf-8">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To do App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+
+    <div class="caja-principal">
+
+      <div class ="form">
+        <h1>📝 Organizador de Tareas</h1>
+          <input [(ngModel)]="nuevaTarea" placeholder="Escribe una nueva tarea" (keydown.enter)="agregarTarea()"/>
+        <button (click)="agregarTarea()">Agregar</button>
+        <button class="borrarT" (click)="borrarTodo()">Borrar Todas las Tareas</button>
+      </div>
+
+    </div>
+
+    <div class="todas-las-listas">
+      
+      <div class="lista pendientes" cdkDropList #pendientesList="cdkDropList" [cdkDropListData]="pendientes" 
+            [cdkDropListConnectedTo]="[produccionList, completadasList]" (cdkDropListDropped)="drop($event)">
+          <h3>Lista de Tareas Pendientes ({{ pendientes.length }})</h3>
+          <div class="objetoLista lista1" *ngFor="let tarea of pendientes; let i = index" cdkDrag><!-- Added index variable 'i' -->
+              {{ tarea }}
+              <button class="delete" (click)="borrarTarea(i, 'pendientes')"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+          </div>
+      </div>
+
+      <div class="lista produccion" cdkDropList #produccionList="cdkDropList" [cdkDropListData]="produccion" 
+            [cdkDropListConnectedTo]="[pendientesList, completadasList]" (cdkDropListDropped)="drop($event)">
+        <h3>Lista de Tareas en Producción ({{ produccion.length }})</h3>
+          <div class="objetoLista lista2" *ngFor="let tarea of produccion; let i = index" cdkDrag><!-- Added index variable 'i' -->
+              {{ tarea }}
+                <button class="delete" (click)="borrarTarea(i, 'produccion')"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+          </div>
+      </div>
+
+      <div class="lista completadas" cdkDropList #completadasList="cdkDropList" [cdkDropListData]="completadas" 
+            [cdkDropListConnectedTo]="[produccionList, pendientesList]" (cdkDropListDropped)="drop($event)">
+        <h3>Lista de Tareas Completadas ({{ completadas.length }})</h3>
+          <div class="objetoLista lista3" *ngFor="let tarea of completadas; let i = index" cdkDrag><!-- Added index variable 'i' -->
+              {{ tarea }}
+            <button class="delete" (click)="borrarTarea(i, 'completadas')"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+          </div>
+      </div>
+
+    </div>
+         
+
+  </body>
+
+</html>
