@@ -128,8 +128,4 @@ Los archivos optimizados y listos para producción se generarán en el directori
 *   [ ] **Múltiples tableros:** Permitir al usuario crear diferentes tableros para organizar distintas áreas de su vida (trabajo, estudios, personal).
 *   [ ] **Modo Oscuro / Claro:** Alternancia visual para ajustarse a las preferencias del usuario.
 
----
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia **MIT**. Siéntete libre de utilizarlo, modificarlo y adaptarlo a tus necesidades.
